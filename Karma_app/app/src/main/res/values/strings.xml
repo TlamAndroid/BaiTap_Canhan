@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Karma_app</string>
+    <string name="karma" >Karma</string>
+    <string name="Sign_in" >Sign in with your account</string>
+    <string name="hint_1" >E-mail</string>
+    <string name="hint_2">Password</string>
+    <string name="Remember" >Remember me</string>
+    <string name="Sign_up">Still don\'t have account? Sign up</string>
+</resources>
