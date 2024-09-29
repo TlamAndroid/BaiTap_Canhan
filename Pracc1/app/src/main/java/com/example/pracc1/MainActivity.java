@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btnOpenActivity = findViewById(R.id.btnStart);
-        tv1 = findViewById(R.id.tvInfo);
+        tv1 = findViewById(R.id.tv);
 
         btnOpenActivity.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, SecondActivity.class);
