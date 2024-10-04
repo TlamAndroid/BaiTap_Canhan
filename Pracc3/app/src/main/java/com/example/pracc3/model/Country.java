@@ -1,26 +1,28 @@
 package com.example.pracc3.model;
 
-public class Country {
-    private final String nation, capital, population, arie, destiny, world_share;
+import java.io.Serializable;
+
+public class Country implements Serializable {
+    private final String nation;
+    private final String capital;
+    private final String population;
+    private final String area;
+    private final String destiny;
+    private final String worldShare;
     private final int flag;
 
-    public int getFlag() {
-        return flag;
-    }
-
-    public Country(int flag, String nation,String capital, String population, String arie,  String destiny, String world_share) {
+    public Country(int flag, String nation, String capital, String population, String area, String destiny, String worldShare) {
         this.flag = flag;
-        this.arie = arie;
-        this.capital = capital;
-        this.destiny = destiny;
-
         this.nation = nation;
+        this.capital = capital;
         this.population = population;
-        this.world_share = world_share;
+        this.area = area;
+        this.destiny = destiny;
+        this.worldShare = worldShare;
     }
 
-    public String getArie() {
-        return arie;
+    public String getArea() {
+        return area;
     }
 
     public String getCapital() {
@@ -31,6 +33,10 @@ public class Country {
         return destiny;
     }
 
+    public int getFlag() {
+        return flag;
+    }
+
     public String getNation() {
         return nation;
     }
@@ -39,7 +45,7 @@ public class Country {
         return population;
     }
 
-    public String getWorld_share() {
-        return world_share;
+    public String getWorldShare() {
+        return worldShare;
     }
 }
