@@ -17,7 +17,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-    private Button btnOpenActivity;
+    private Button btnopen;
     private TextView tv1, tv2;
     @SuppressLint({"MissingInflatedId", "SetTextI18n"})
     private final ActivityResultLauncher<Intent> startForResult = registerForActivityResult(
@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnOpenActivity = findViewById(R.id.btnStart);
+        btnopen = findViewById(R.id.btnStart);
         tv1 = findViewById(R.id.tv);
 
-        btnOpenActivity.setOnClickListener(view -> {
+        btnopen.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, SecondActivity.class);
             startForResult.launch(intent);
         });

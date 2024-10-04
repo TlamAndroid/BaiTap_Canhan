@@ -15,7 +15,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private EmployeeViewModel employeeViewModel;
-    private EditText etFullName, etStaffId, etBirthDate, etSalary;
+    private EditText etN, etS, etBD, etSlr;
     private Button btnAdd;
     private TextView tvMessage, tvEmployeeList;
     private int employeeCount = 0;
@@ -25,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        etFullName = findViewById(R.id.edFName);
-        etStaffId = findViewById(R.id.edId);
-        etBirthDate = findViewById(R.id.edBDate);
-        etSalary = findViewById(R.id.edSlr);
+        etN = findViewById(R.id.edFName);
+        etS = findViewById(R.id.edId);
+        etBD = findViewById(R.id.edBDate);
+        etSlr= findViewById(R.id.edSlr);
         btnAdd = findViewById(R.id.button);
         tvMessage = findViewById(R.id.tvMess);
         tvEmployeeList = findViewById(R.id.tvEmList);
@@ -56,10 +56,10 @@ public class MainActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {}
         };
 
-        etFullName.addTextChangedListener(inputWatcher);
-        etStaffId.addTextChangedListener(inputWatcher);
-        etBirthDate.addTextChangedListener(inputWatcher);
-        etSalary.addTextChangedListener(inputWatcher);
+        etN.addTextChangedListener(inputWatcher);
+        etS.addTextChangedListener(inputWatcher);
+        etBD.addTextChangedListener(inputWatcher);
+        etSlr.addTextChangedListener(inputWatcher);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,34 +67,6 @@ public class MainActivity extends AppCompatActivity {
                 addEmployee();
             }
         });
-    }
-
-    private void addEmployee() {
-        String fullName = etFullName.getText().toString().trim();
-        String staffId = etStaffId.getText().toString().trim();
-        String birthDate = etBirthDate.getText().toString().trim();
-        String salary = etSalary.getText().toString().trim();
-
-        if (validateInputs(fullName, staffId, birthDate, salary)) {
-            employeeViewModel.addEmployee(fullName, staffId, birthDate, salary);
-            employeeCount++; // Tăng số lượng nhân viên đã thêm
-            tvMessage.setText("Đã thêm nhân viên.");
-            clearInputs();
-            notifyMultipleAdds();
-        } else {
-            tvMessage.setText("Chưa nhập đủ dữ liệu.");
-        }
-    }
-
-    private boolean validateInputs(String fullName, String staffId, String birthDate, String salary) {
-        return !fullName.isEmpty() && !staffId.isEmpty() && !birthDate.isEmpty() && !salary.isEmpty();
-    }
-
-    private void clearInputs() {
-        etFullName.setText("");
-        etStaffId.setText("");
-        etBirthDate.setText("");
-        etSalary.setText("");
     }
 
     private void displayEmployeeList(List<Employee> employees) {
@@ -111,12 +83,41 @@ public class MainActivity extends AppCompatActivity {
             tvEmployeeList.setText(stringBuilder.toString());
         }
     }
+    private void addEmployee() {
+        String fullName = etN.getText().toString().trim();
+        String staffId = etS.getText().toString().trim();
+        String birthDate = etBD.getText().toString().trim();
+        String salary = etSlr.getText().toString().trim();
+
+        if (validateInputs(fullName, staffId, birthDate, salary)) {
+            employeeViewModel.addEmployee(fullName, staffId, birthDate, salary);
+            employeeCount++; // Tăng số lượng nhân viên đã thêm
+            tvMessage.setText("Đã thêm nhân viên.");
+            etN.setText("");
+            etS.setText("");
+            etBD.setText("");
+            etSlr.setText("");
+            if (employeeCount > 1) {
+                tvMessage.setText("Sau khi thêm vài nhân viên.");
+            }
+        } else {
+            tvMessage.setText("Chưa nhập đủ dữ liệu.");
+        }
+    }
+
+    private boolean validateInputs(String fullName, String staffId, String birthDate, String salary) {
+        return !fullName.isEmpty() && !staffId.isEmpty() && !birthDate.isEmpty() && !salary.isEmpty();
+    }
+
+
+
+
 
     private void checkInputStatus() {
-        String fullName = etFullName.getText().toString().trim();
-        String staffId = etStaffId.getText().toString().trim();
-        String birthDate = etBirthDate.getText().toString().trim();
-        String salary = etSalary.getText().toString().trim();
+        String fullName = etN.getText().toString().trim();
+        String staffId = etS.getText().toString().trim();
+        String birthDate = etBD.getText().toString().trim();
+        String salary = etSlr.getText().toString().trim();
 
         if (!fullName.isEmpty() || !staffId.isEmpty() || !birthDate.isEmpty() || !salary.isEmpty()) {
             tvMessage.setText("Đã nhập nhưng chưa nhấn nút.");
@@ -125,9 +126,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void notifyMultipleAdds() {
-        if (employeeCount > 1) {
-            tvMessage.setText("Sau khi thêm vài nhân viên.");
-        }
-    }
+
 }
