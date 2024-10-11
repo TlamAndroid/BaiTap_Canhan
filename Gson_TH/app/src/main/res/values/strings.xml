@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Gson_TH</string>
+    <string-array name="dia_chi">
+        <item>Bắc Giang</item>
+        <item>Hà Nội</item>
+        <item>Hồ Chí Minh</item>
+    </string-array>
+    <string-array name="chuyen_nganh">
+        <item>CNTT</item>
+        <item>HTTT</item>
+        <item>Cơ Khí</item>
+    </string-array>
+    <string-array name="nam_hoc">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+
 </resources>

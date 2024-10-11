@@ -3,6 +3,7 @@ package com.example.gson_th;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,11 +15,12 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
     private List<Student> students;
     private OnStudentClickListener listener;
 
+
     public interface OnStudentClickListener {
         void onStudentClick(Student student);
     }
 
-    public StudentAdapter(List<Student> students, OnStudentClickListener listener) {
+        public StudentAdapter(List<Student> students, OnStudentClickListener listener) {
         this.students = students;
         this.listener = listener;
     }
@@ -26,16 +28,27 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_student, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         Student student = students.get(position);
-        holder.tvName.setText(student.getFull_name().getFirst() +" "+ student.getFull_name().getMiddle()+ " " + student.getFull_name().getLast());
+        holder.tvName.setText(student.getFull_name().getFirst() + " " + student.getFull_name().getMiddle() + " " + student.getFull_name().getLast());
         holder.tvId.setText(student.getId());
         holder.tvGpa.setText(String.valueOf(student.getGpa()));
+
+
+        if (student.getGender().equalsIgnoreCase("Nữ")) {
+            holder.imageView.setImageResource(R.drawable.ic_woman);
+        } else {
+            holder.imageView.setImageResource(R.drawable.ic_man);
+        }
+
+
         holder.itemView.setOnClickListener(v -> listener.onStudentClick(student));
     }
 
@@ -44,16 +57,21 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
         return students.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvName;
         TextView tvId;
         TextView tvGpa;
+        ImageView imageView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+
             tvName = itemView.findViewById(R.id.tv_name);
             tvId = itemView.findViewById(R.id.tvId);
             tvGpa = itemView.findViewById(R.id.tvGpa);
+            imageView = itemView.findViewById(R.id.imV);
         }
     }
 }

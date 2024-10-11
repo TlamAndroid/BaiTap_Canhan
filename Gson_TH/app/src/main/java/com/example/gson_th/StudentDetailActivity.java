@@ -16,7 +16,6 @@ public class StudentDetailActivity extends AppCompatActivity {
         String studentJson = getIntent().getStringExtra("student");
         Student student = new Gson().fromJson(studentJson, Student.class);
 
-        // Hiển thị thông tin chi tiết sinh viên
         TextView tvDetails = findViewById(R.id.tv_student_details);
         tvDetails.setText("ID: " + student.getId() + "\n" +
                 "Họ: " + student.getFull_name().getFirst() + "\n" +
