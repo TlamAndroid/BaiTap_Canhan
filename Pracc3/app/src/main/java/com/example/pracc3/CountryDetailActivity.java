@@ -1,59 +1,60 @@
-<LinearLayout
-    android:id="@+id/linearLayout1"
-    android:layout_width="149dp"
-    android:layout_height="79dp"
-    android:layout_marginBottom="16dp"  
-    android:background="@color/white"
-    android:orientation="vertical"
-    android:padding="16dp"
-    app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-    app:layout_constraintEnd_toStartOf="@+id/linearLayout2" 
-    app:layout_constraintStart_toStartOf="parent" 
-    app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-    app:layout_constraintVertical_bias="1.0">
+package com.example.pracc3;
 
-    <TextView
-        android:id="@+id/tv_reading_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0 giờ"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Đọc &amp; Nghe sách"
-        android:textColor="@color/gray"
-        android:textSize="14sp" />
-</LinearLayout>
+import androidx.appcompat.app.AppCompatActivity;
 
-<LinearLayout
-    android:id="@+id/linearLayout2"
-    android:layout_width="149dp"
-    android:layout_height="79dp"
-    android:layout_marginBottom="16dp"  
-    android:background="@color/white"
-    android:orientation="vertical"
-    android:padding="16dp"
-    app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-    app:layout_constraintEnd_toEndOf="parent" 
-    app:layout_constraintStart_toEndOf="@+id/linearLayout1" 
-    app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-    app:layout_constraintVertical_bias="1.0">
+import com.example.pracc3.model.Country;
 
-    <TextView
-        android:id="@+id/tv_history"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lịch sử"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
+public class CountryDetailActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_country_detail);
+        Intent intent = getIntent();
+        Country country = (Country) intent.getSerializableExtra("country");
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Đọc &amp; Nghe sách"
-        android:textColor="@color/gray"
-        android:textSize="14sp" />
-</LinearLayout>
+
+        ImageView imgFlag = findViewById(R.id.imgFlag);
+        TextView txtName = findViewById(R.id.txtName);
+        TextView txtCapital = findViewById(R.id.txtCapital);
+        TextView txtPopulation = findViewById(R.id.txtPopulation);
+        TextView txtArea = findViewById(R.id.txtArea);
+        TextView txtDestiny = findViewById(R.id.txtDestiny);
+        TextView txtWorldShare = findViewById(R.id.txtWorldShare);
+        Button btnBack = findViewById(R.id.btnBack);
+
+
+        if (country != null) {
+            imgFlag.setImageResource(country.getFlag());
+            txtName.setText(country.getNation());
+            txtCapital.setText(country.getCapital());
+            txtPopulation.setText(country.getPopulation());
+            txtArea.setText(country.getArea());
+            txtDestiny.setText(country.getDestiny());
+            txtWorldShare.setText(country.getWorldShare());
+        } else {
+
+            txtName.setText("Thông tin không có sẵn");
+            txtCapital.setText("");
+            txtPopulation.setText("");
+            txtArea.setText("");
+            txtDestiny.setText("");
+            txtWorldShare.setText("");
+            imgFlag.setImageResource(R.drawable.ic_launcher_foreground); 
+        }
+
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+}
