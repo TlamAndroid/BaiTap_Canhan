@@ -47,6 +47,7 @@ public class Edit extends AppCompatActivity {
         btnUpdate.setOnClickListener(v -> {
             String hoten = edtHoten.getText().toString();
             String lop = edtLop.getText().toString();
+            String mssv = edtMSSV.getText().toString();
             double diem;
 
             try {
@@ -55,7 +56,7 @@ public class Edit extends AppCompatActivity {
                 Toast.makeText(Edit.this, "Điểm không hợp lệ!", Toast.LENGTH_SHORT).show();
                 return;
             }
-            Sinhvien updatedSinhVien = new Sinhvien(hoten, lop, diem, sinhVienId);
+            Sinhvien updatedSinhVien = new Sinhvien(hoten, lop, diem, mssv);
             databaseReference.child(sinhVienId).setValue(updatedSinhVien)
                     .addOnSuccessListener(aVoid -> {
                         Toast.makeText(Edit.this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show();
@@ -65,6 +66,5 @@ public class Edit extends AppCompatActivity {
                         Toast.makeText(Edit.this, "Cập nhật thất bại: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     });
         });
-
     }
 }
