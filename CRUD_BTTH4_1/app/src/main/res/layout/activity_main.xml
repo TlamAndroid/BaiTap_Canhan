@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Danhsach">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="#2196F3"
+        android:gravity="center"
+        android:text="Danh sách"
+        android:textSize="25sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/View1"
+        android:layout_width="match_parent"
+        android:layout_height="599dp"
+        android:layout_marginTop="50sp"
+        android:background="@color/white" />
+
+    <ImageButton
+        android:id="@+id/btnAdd"
+        android:layout_width="61dp"
+        android:layout_height="51dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="10sp"
+        android:layout_marginBottom="10sp"
+        android:layout_weight="1"
+        android:background="@drawable/rounded_background"
+        android:backgroundTint="#798388"
+        android:backgroundTintMode="src_in"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_add"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintVertical_bias="1" />
+</FrameLayout>
